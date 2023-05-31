@@ -11,19 +11,19 @@ services:
     volumes:
       - pg_data_production:/var/lib/postgresql/data
   backend:
-    build: ./backend/
+    image: ya0961/kittygram_backend
     env_file: .env
     volumes:
       - static:/static
   frontend:
     env_file: .env
-    build: ./frontend/
+    image: ya0961/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
       - media:/media
   gateway:
-    build: ./nginx/
+    image: ya0961/kittygram_gateway
     env_file: .env
     ports:
       - 9000:80
