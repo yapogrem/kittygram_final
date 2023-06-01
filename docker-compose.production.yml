@@ -3,6 +3,7 @@ version: '3'
 volumes:
   pg_data_production:
   static:
+  media:
 
 services:
   db:
@@ -15,13 +16,13 @@ services:
     env_file: .env
     volumes:
       - static:/static
+      - media:/media
   frontend:
     env_file: .env
     image: ya0961/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
-      - media:/media
   gateway:
     image: ya0961/kittygram_gateway
     env_file: .env
@@ -29,3 +30,4 @@ services:
       - 9000:80
     volumes:
       - static:/static
+      - media:/media
