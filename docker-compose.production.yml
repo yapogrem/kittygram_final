@@ -18,14 +18,12 @@ services:
       - static:/backend_static
       - media:/app/media
   frontend:
-    env_file: .env
     image: ya0961/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
   gateway:
     image: ya0961/kittygram_gateway
-    env_file: .env
     ports:
       - 9000:80
     volumes:
