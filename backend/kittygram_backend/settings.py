@@ -2,11 +2,23 @@ import distutils.util
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'key')
 
+# DEBUG = bool(distutils.util.strtobool(os.getenv('DEBUG'))) не пропускает pytest:
+# File "/home/pogrem/Dev/kittygram_final/backend/kittygram_backend/settings.py", line 9, in <module>
+# DEBUG = bool(distutils.util.strtobool(os.getenv('DEBUG')))
+# File "/home/pogrem/Dev/kittygram_final/venv/lib/python3.9/site-packages/setuptools/_distutils/util.py", line 347, in strtobool
+# val = val.lower()
+# AttributeError: 'NoneType' object has no attribute 'lower'
+
 DEBUG = bool(distutils.util.strtobool(os.getenv('DEBUG', 'false')))
+
 
 ALLOWED_HOSTS = str(os.getenv('ALLOWED_HOSTS')).split(',')
 
