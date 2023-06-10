@@ -1,9 +1,3 @@
-# Перед тем как сдавать проект, в корне проекта создайте файл kittygram_workflow.yml
-# и скопируйте в него содержимое файла main.yml.
-# Это необходимо для того, чтобы ревьюеры могли проверить ваш workflow.
-# Это копия файла .github/workflows/main.yml
-# Или я неправильно понял замечание
-
 name: Main Kittygram workflow
 
 on:
@@ -156,12 +150,10 @@ jobs:
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd kittygram
-            # Выполняет pull образов с DockerHub
             sudo docker compose -f docker-compose.production.yml pull
             # Перезапускает все контейнеры в docker compose
             sudo docker compose -f docker-compose.production.yml down
             sudo docker compose -f docker-compose.production.yml up -d
-            # Выполняет миграции и сбор статики
             sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
             sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
             sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/static/. /backend_static/static/
