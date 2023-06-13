@@ -23,9 +23,10 @@ services:
     volumes:
       - static:/static
   gateway:
-    image: ya0961/kittygram_gateway
+    image: nginx
     ports:
       - 9000:80
     volumes:
       - static:/static
       - media:/media
+      - ./config/nginx/conf.d:/etc/nginx/templates/
