@@ -148,8 +148,8 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          source: "nginx/nginx.conf"
-          target: "kittygram//config/nginx/conf.d"
+          source: "nginx.nginx.conf"
+          target: "kittygram/config/nginx/conf.d"
       - name: Executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
