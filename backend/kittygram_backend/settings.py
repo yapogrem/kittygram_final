@@ -12,9 +12,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = bool(distutils.util.strtobool(os.getenv('DEBUG', 'false')))
 
-
 ALLOWED_HOSTS = str(os.getenv('ALLOWED_HOSTS')).split(',')
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -99,7 +97,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'app/static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media'
