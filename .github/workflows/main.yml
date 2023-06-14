@@ -115,35 +115,29 @@ jobs:
       - name: Copy docker-compose.yml via ssh
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.HOST_J }}
-          username: ${{ secrets.USER_J }}
-#          key: ${{ secrets.SSH_KEY }}
-#          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          password: ${{ secrets.PASS_J }}
-          port: ${{ secrets.PORT_J }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           source: "docker-compose.production.yml"
           target: "kittygram"
       - name: Copy nginx.conf via ssh
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.HOST_J }}
-          username: ${{ secrets.USER_J }}
-#          key: ${{ secrets.SSH_KEY }}
-#          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          password: ${{ secrets.PASS_J }}
-          port: ${{ secrets.PORT_J }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           source: "nginx/default.conf.template"
           target: "kittygram/config/nginx/conf.d"
           strip_components: 1
       - name: Executing remote ssh commands to deploy
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST_J }}
-          username: ${{ secrets.USER_J }}
-#          key: ${{ secrets.SSH_KEY }}
-#          passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          password: ${{ secrets.PASS_J }}
-          port: ${{ secrets.PORT_J }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
             cd kittygram
             sudo docker compose -f docker-compose.production.yml pull
