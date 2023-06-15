@@ -128,7 +128,7 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
-          source: "nginx/default.conf.template"
+          source: "nginx/default.conf"
           target: "kittygram/config/nginx/conf.d"
           strip_components: 1
       - name: Executing remote ssh commands to deploy
